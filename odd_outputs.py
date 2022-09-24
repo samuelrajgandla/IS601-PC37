@@ -14,7 +14,6 @@ def process_array(num, arr):
         if x%2!=0:
             print(x, end = ', ')
 
-
 print("Problem 1")
 process_array(1, a1)
 process_array(2, a2)
