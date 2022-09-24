@@ -16,6 +16,7 @@ def process_array(num, arr):
 
 
 print("Problem 1")
+
 process_array(1, a1)
 process_array(2, a2)
 process_array(3, a3)
