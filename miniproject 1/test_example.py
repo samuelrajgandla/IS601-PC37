@@ -157,3 +157,4 @@ def test_total_icecreams(second_order, machine1):
     machine1.handle_pay(iceCreamCost3, str(iceCreamCost3))
 
     assert second_order.total_icecreams == 2 and machine1.total_icecreams == 3
+    
