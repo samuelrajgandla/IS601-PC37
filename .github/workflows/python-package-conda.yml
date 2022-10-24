@@ -15,6 +15,8 @@ jobs:
       with:
         python-version: 3.11
         architecture: "x64"
+      env:
+          AGENT_TOOLSDIRECTORY: /opt/hostedtoolcache   
     - name: Add conda to system path
       run: |
         # $CONDA is an environment variable pointing to the root of the miniconda directory
