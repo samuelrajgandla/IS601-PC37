@@ -17,3 +17,4 @@ class ExceededRemainingChoicesException(Exception):
 class InvalidPaymentException(Exception):
     """Raised when an invalid payment amount is given"""
     pass
+    
