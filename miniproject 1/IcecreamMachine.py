@@ -228,4 +228,3 @@ class IceCreamMachine:
 if __name__ == "__main__":
     icm = IceCreamMachine()
     icm.start()
-    
