@@ -14,7 +14,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      DB_URL: ${{secrets.mysql://sg2434:R4hDlTmLkqCn@db.ethereallab.app:3306/sg2434}}
+      DB_URL: ${{secrets.DB_URL}}
       PORT: 8080
       # change to the project directory you're deploying
       WORKING_DIRECTORY: flask_sample
@@ -39,14 +39,14 @@ jobs:
           # The email address associated with your Heroku account.
           # If you don't want to use repository secrets (which is recommended) you can do:
           # email: my.email@example.com
-          email: ${{ secrets.sg2434@njit.edu }}
+          email: ${{ secrets.HEROKU_EMAIL }}
           
           # Heroku API key associated with provided user's email.
           # Api Key is available under your Heroku account settings.
-          heroku_api_key: ${{ secrets.18eeb771-3c00-47b3-a880-e2a3758a55f7 }}
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           
           # Name of the heroku application to which the build is to be sent.
-          heroku_app_name: ${{ secrets.is601-sg2434-dev }}
+          heroku_app_name: ${{ secrets.HEROKU_APP_NAME_DEV }}
 
           # (Optional, default: "./")
           # Dockerfile directory.
