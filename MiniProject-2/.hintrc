@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "development"
+  ],
+  "hints": {
+    "axe/language": "off",
+    "meta-viewport": "off",
+    "no-inline-styles": "off",
+    "axe/parsing": [
+      "default",
+      {
+        "duplicate-id-aria": "off"
+      }
+    ],
+    "axe/forms": "off"
+  }
+}
