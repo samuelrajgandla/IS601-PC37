@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block title %}Edit Company{% endblock %}
+{% block content %}
+{% from "_formhelpers.html" import render_field %}
+<div class="container-fluid">
+    <div class="h1 text-center m-3">Edit Company</div>
+    <div class="card mx-auto" style="max-width: 500px;">
+        <div class="card-body">
+            <form method="POST">
+                {#
+                generate fields with proper types for
+                name
+                address
+                city
+                website
+                and prefill the fields with loaded company data
+                #}
+                {{ form.hidden_tag() }}
+                {{render_field(form.name)}}
+                {{render_field(form.address)}}
+                {{render_field(form.city)}}
+                {# use this for country/state selection #}
+                {% with state=state, country=country %}
+                    {% include "country_state_selector.html" %}
+                {% endwith %}
+                {{render_field(form.zip)}}
+                {{render_field(form.website)}}
+                <input type="submit" class="btn btn-primary" value="Save Company" />
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

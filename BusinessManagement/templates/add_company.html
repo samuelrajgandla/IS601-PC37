@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block title %}Add Company{% endblock %}
+{% block content %}
+{% from "_formhelpers.html" import render_field %}
+<div class="container-fluid">
+    <div class="h1 text-center m-3">Add Company</div>
+    <div class="card mx-auto  mb-4" style="max-width: 500px;">
+        <div class="card-body">
+            <form method="POST">
+                {#
+                generate fields with proper types for
+                name
+                address
+                city
+                website
+                #}
+                {{ form.hidden_tag() }}
+                {{render_field(form.name)}}
+                {{render_field(form.address)}}
+                {{render_field(form.city)}}
+                {# use this for country/state selection #}
+                {% include "country_state_selector.html" %}
+                {{render_field(form.zip)}}
+                {{render_field(form.website)}}
+                <input type="submit" class="btn btn-primary" value="Save Company" />
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

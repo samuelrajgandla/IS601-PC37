@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+{% block title %}Employee Directory{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="h1 text-center m-4">{{request.args.get("company_name","")}} Employee Directory</div>
+    <form class="row row-cols-lg-auto g-3 my-4 align-items-end" method="GET">
+        {# TODO
+        build a horizontal filter/sort form with
+        first_name
+        last_name
+        email
+        company (provided)
+        sort/order (using allowed_columns and provided partial template)
+        limit
+        ensure all fields prefill with request arg data if provided
+        #}
+        <div class="col-12" style="max-width: 18%;">
+            <label class="form-label visually-hidden" for="fn">First Name</label>
+            <input type="text" name="fn" class="form-control" id="fn" placeholder="First Name"
+                value="{{request.args.get('fn') or ''}}">
+        </div>
+        <div class="col-12" style="max-width: 18%;">
+            <label class="form-label visually-hidden" for="ln">Last Name</label>
+            <input type="text" name="ln" class="form-control" id="ln" placeholder="Last Name"
+                value="{{request.args.get('ln') or ''}}">
+        </div>
+        <div class="col-12" style="max-width: 18%;">
+            <label class="form-label visually-hidden" for="email">email</label>
+            <input type="text" name="email" class="form-control" id="email" placeholder="Email"
+                value="{{request.args.get('email') or ''}}">
+        </div>
+        <div class="col-12" style="max-width: 18%;">
+            <label class="visually-hidden" for="company">Company</label>
+            {% with val = request.args.get("company", '') %}
+                {% include "company_dropdown.html" %}
+            {% endwith %}
+        </div>
+        {% with cols = allowed_columns %}
+            {% include "sort_filter.html" %}
+        {% endwith %}
+        <div class="col-12" style="max-width: 18%;">
+            <label class="form-label visually-hidden" for="limit">Limit</label>
+            <input type="number" name="limit" class="form-control" id="limit" placeholder="Limit" min="0" max="100"
+                value="{{request.args.get('limit') or 10}}">
+        </div>
+        
+        <div class="col-12" style="max-width: 18%;">
+            <input type="submit" class="btn btn-primary" value="Filter" />
+        </div>
+        <div class="col-12" style="max-width: 18%;">
+            <a href="?" class="btn btn-secondary">Reset</a>
+        </div>
+    </form>
+    <table class="table">
+        {% if rows and rows|length > 0 %}
+        <thead>
+            <tr class="text-capitalize">
+                {# generate th tags for each column to display #}
+                {# IMPORTANT use table column names as the headings, replace _ with space #}
+                {% for r in rows[0] %}
+                    <th>{{r | replace("_", " ")}}</th>
+                {% endfor %}
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {# generate tr with td tags for each piece of data #}
+            {# in the last column add the following
+            an edit button that passes the employee id to employee edit
+            a delete button that passes the employee id and the request args to the employee delete route
+            #}
+            {% for r in rows %}
+                <tr>
+                    {% for v in r.values() %}
+                        <td>{{v}}</td>
+                    {% endfor %}
+                    <td><a href="{{url_for('employee.edit', id=r.get('id'))}}" class="btn btn-secondary btn-sm">Edit</a>
+                        <a href="{{url_for('employee.delete', id=r.get('id'), **request.args)}}"
+                            class="btn btn-danger btn-sm">X</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        {% else %}
+        <tbody>
+            <tr>
+                <td colspan="100%">No results to show</td>
+            </tr>
+        </tbody>
+        {% endif %}
+    </table>
+</div>
+{% endblock %}
