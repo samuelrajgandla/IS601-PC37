@@ -1,0 +1,10 @@
+venv
+.idea
+.vscode
+__pycache__
+.DS_Store
+.env
+.mo
+.po
+myvenv/
+.DS_Store

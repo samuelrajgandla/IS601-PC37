@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block title %}Add Employee{% endblock %}
+{% block content %}
+{% from "_formhelpers.html" import render_field %}
+<div class="container-fluid">
+    <div class="h1 text-center m-3">Add Employee</div>
+    <div class="card mx-auto" style="max-width: 500px;">
+        <div class="card-body">
+            <form method="POST">
+                {#
+                generate fields with proper types for
+                first_name
+                last_name
+                email
+                #}
+                {{ form.hidden_tag() }}
+                {{render_field(form.first_name)}}
+                {{render_field(form.last_name)}}
+                {{render_field(form.email)}}
+                {# use the below for company selection #}
+                <div class="col-12 mb-3">
+                    <label class="form-label" for="company">Company</label>
+                    {% include "company_dropdown.html" %}
+                </div>
+                <input type="submit" class="btn btn-primary mb-3" value="Save Employee" />
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
