@@ -17,7 +17,7 @@ jobs:
       SECRET_KEY: ${{secrets.SECRET_KEY}}
       PORT: 8080
       # change to the project directory you're deploying
-      WORKING_DIRECTORY: project
+      WORKING_DIRECTORY: IS601-F22-Project-MS2-Shop 2/project
     defaults:
       run:
           working-directory: ${{env.WORKING_DIRECTORY}}
